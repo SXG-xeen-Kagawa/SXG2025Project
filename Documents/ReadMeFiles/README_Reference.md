@@ -270,8 +270,6 @@ Prefabの編集モードで、自身の戦車に砲塔や装甲を着けてカ�
 
 ---
 
-<h3 id="sample09">CB（Assets/Participant/Sample09）</h3>
-
 <img width="300" alt="image" src="../ReadMeImages/Reference/009.png" />
 
 - 出撃コスト　：316 pts
