@@ -73,20 +73,20 @@ Prefabの編集モードで、自身の戦車に砲塔や装甲を着けてカ�
 シールドが表示されている2秒間は無敵状態。<br>
 自身の砲弾の発射も不可。
   
-![image](../ReadMeImages/Reference/001.png)
+<img width="300" alt="image" src="../ReadMeImages/Reference/001.png" />
 
 &nbsp;
 
 砲弾が戦車のコア部分（緑色のコリジョン部分）に当たると戦車は撃破される。<br>
 撃破されても残機が残っていれば復帰。
 
-![image](../ReadMeImages/Reference/002.png)
+<img width="300" alt="image" src="../ReadMeImages/Reference/002.png" />
 
 &nbsp;
 
 戦車を撃破すると、**撃破した戦車の出撃コスト分のポイントを獲得。**
 
-![image](../ReadMeImages/Reference/003.png)
+<img width="300" alt="image" src="../ReadMeImages/Reference/003.png" />
 
 &nbsp;
 
@@ -272,7 +272,7 @@ Prefabの編集モードで、自身の戦車に砲塔や装甲を着けてカ�
 
 <h3 id="sample09">CB（Assets/Participant/Sample09）</h3>
 
-<img width="200" alt="Sample01" src="../ReadMeImages/Reference/Sample09.png" />
+<img width="300" alt="image" src="../ReadMeImages/Reference/009.png" />
 
 - 出撃コスト　：316 pts
 - 出撃可能回数：３回
