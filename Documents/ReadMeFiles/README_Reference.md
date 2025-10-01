@@ -270,7 +270,7 @@ Prefabの編集モードで、自身の戦車に砲塔や装甲を着けてカ�
 
 ---
 
-<img width="300" alt="image" src="../ReadMeImages/Reference/009.png" />
+<img width="200" alt="Sample01" src="../ReadMeImages/Reference/Sample09.png" />
 
 - 出撃コスト　：316 pts
 - 出撃可能回数：３回
@@ -310,7 +310,7 @@ Vector3[] SXG_GetHitObstacles(float searchLength);
 自分の戦車を中心に、周囲の障害物（岩）の座標を取得します。  
 ステージ中央の大きな岩に加え、ステージ外周の岩も１メッシュずつ取得します。
 
-![image](../ReadMeImages/Reference/008.png)
+<img width="300" alt="image" src="../ReadMeImages/Reference/008.png" />
 
 ---
 
