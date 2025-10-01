@@ -172,7 +172,7 @@ namespace Player7777777
 
 作成されたPrefabを開いてみましょう。<br>
 
-![image](../ReadMeImages/HowToCreate/009.png)
+<img width="300" alt="image" src="../ReadMeImages/HowToCreate/009.png" />
 
 Prefabの編集モードで、自身の戦車に砲塔や装甲を着けてカスタマイズできます。<br>
 

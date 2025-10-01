@@ -65,7 +65,7 @@ Prefab内でCubeを作成し、Transform（座標・回転・スケール）を�
 また、上記のフォルダ内に、弊社がいくつかモデルを用意していますので、ご自由にご利用ください。  
 スケールを変更しても構いません。
 
-![image](../ReadMeImages/HowToCustomizeTank/004.png)
+<img width="300" alt="image" src="../ReadMeImages/HowToCustomizeTank/004.png" />
 
 ![image](../ReadMeImages/HowToCustomizeTank/005.png)
 
@@ -81,7 +81,7 @@ Prefab内でCubeを作成し、Transform（座標・回転・スケール）を�
 
 ![image](../ReadMeImages/HowToCustomizeTank/006.png)
 
-![image](../ReadMeImages/HowToCustomizeTank/007.png)
+<img width="400" alt="image" src="../ReadMeImages/HowToCustomizeTank/007.png" />
 
 &nbsp;
 

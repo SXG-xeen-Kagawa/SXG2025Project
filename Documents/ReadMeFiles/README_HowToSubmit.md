@@ -6,7 +6,7 @@
 
 挑戦者出力ウィンドウが開きます。
 
-![image](../ReadMeImages/HowToCustomizeTank/001.png)
+![image](../ReadMeImages/HowToSubmit/001.png)
 
 ## 2. 各項目を入力
 
@@ -29,7 +29,7 @@ Assets/
 
 [提出用Googleフォーム](https://docs.google.com/forms/d/1lHd5gs5apcTvpgkbw2mZHg5t7E_iDxfNkkhj-uMRVN0/edit)
 
-![image](../ReadMeImages/HowToCustomizeTank/002.png)
+![image](../ReadMeImages/HowToSubmit/002.png)
 
 その他の項目も記入して、送信してください。
 
@@ -52,7 +52,7 @@ Googleフォームの送信は、締め切りまで何度でも可能です。<b
 [connpassのイベントページ](https://connpass.com/event/366668/)の「参加者への情報」の欄に、受付番号と不具合の内容を掲載させていただきますので、可能であれば、修正のうえプログラムの再提出をお願いします。  
 お手数ですが、AI提出後はページをこまめにチェックするようお願いします。
 
-![image](../ReadMeImages/HowToCustomizeTank/003.png)
+![image](../ReadMeImages/HowToSubmit/003.png)
 
 
 
