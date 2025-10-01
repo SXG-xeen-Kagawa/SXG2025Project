@@ -1,7 +1,7 @@
 # SXGプログラミングバトル2025<br>～スーパータンクウォーズ～
 
 <div align="center">
-  <img width="880" alt="Header" src="https://github.com/user-attachments/assets/04ce0549-dd10-42c4-9dfe-a1739b7ac5e6" />
+  <img width="880" alt="Header" src="Documents/ReadMeImages/Top/000.png" />
 </div>
 
 ## 概要
