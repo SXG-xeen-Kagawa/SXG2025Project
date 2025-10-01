@@ -2,11 +2,11 @@
 
 ## 1. Unity上部メニュー SXG2025 > 挑戦者出力 を選択
 
-<img width="190" height="79" alt="image" src="https://github.com/user-attachments/assets/10784214-b612-4cc8-803a-f0d12a28f154" />
+![image](../ReadMeImages/HowToSubmit/000.png)
 
 挑戦者出力ウィンドウが開きます。
 
-<img width="397" height="276" alt="image" src="https://github.com/user-attachments/assets/d35046ae-e65c-436d-92b1-fb9661a6ffe9" />
+![image](../ReadMeImages/HowToCustomizeTank/001.png)
 
 ## 2. 各項目を入力
 
@@ -29,7 +29,7 @@ Assets/
 
 [提出用Googleフォーム](https://docs.google.com/forms/d/1lHd5gs5apcTvpgkbw2mZHg5t7E_iDxfNkkhj-uMRVN0/edit)
 
-<img width="664" height="174" alt="image" src="https://github.com/user-attachments/assets/963c4e98-0682-4cc3-87cb-70488bbc7ffe" />
+![image](../ReadMeImages/HowToCustomizeTank/002.png)
 
 その他の項目も記入して、送信してください。
 
@@ -52,7 +52,7 @@ Googleフォームの送信は、締め切りまで何度でも可能です。<b
 [connpassのイベントページ](https://connpass.com/event/366668/)の「参加者への情報」の欄に、受付番号と不具合の内容を掲載させていただきますので、可能であれば、修正のうえプログラムの再提出をお願いします。  
 お手数ですが、AI提出後はページをこまめにチェックするようお願いします。
 
-<img width="713" height="259" alt="image" src="https://github.com/user-attachments/assets/d8d7f85e-0eb4-4ad8-a24d-db81d8800647" />
+![image](../ReadMeImages/HowToCustomizeTank/003.png)
 
 
 

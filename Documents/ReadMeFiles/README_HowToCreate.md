@@ -9,15 +9,16 @@
 
 ### 1. connpassで[イベント](https://connpass.com/event/366668/)に参加する
 
-&nbsp;
+![image](../ReadMeImages/HowToCreate/000.png)
+
 
 ### 2. イベントページの「受付票を見る」ボタンを押す
 
-<img src="https://github.com/user-attachments/assets/c776090e-6e47-4971-8132-56e247d27c23"><br>
+![image](../ReadMeImages/HowToCreate/001.png)
 
 ### 3. 受付番号を確認する（7桁）
 
-<img src="https://github.com/user-attachments/assets/0ad302ce-c06f-4efd-a838-6856cdb5f49b"><br>
+![image](../ReadMeImages/HowToCreate/002.png)
 
 ---
 
@@ -31,18 +32,18 @@ Youtubeの動画でも、AI新規作成方法の概要をご確認いただけ�
 （詳細はReadMeの文面をご確認ください）
 
 ▼クリックで動画再生ページへジャンプします。
-[![紹介動画](https://github.com/user-attachments/assets/63168912-f6af-45fe-8beb-bd070fb2b8f1)](https://youtu.be/Y_IXl3TUv6Q "紹介動画")
+[![紹介動画](../ReadMeImages/HowToCreate/link.jpg)](https://youtu.be/Y_IXl3TUv6Q "紹介動画")
 <br>※画面は開発中のものです<br>
 
 &nbsp;
 
 ### 1. Unity上部メニュー SXG2025 > 挑戦者作成 を選択
 
-<img width="194" height="73" alt="image" src="https://github.com/user-attachments/assets/b1649487-8033-44d8-b3c9-bd4cd7b6b2fb" />
+![image](../ReadMeImages/HowToCreate/003.png)
 
 挑戦者作成ウィンドウが開きます。
 
-<img src="https://github.com/user-attachments/assets/c936b4c4-32f0-4e6f-8d0d-695047b7ede3"><br>
+![image](../ReadMeImages/HowToCreate/004.png)
 
 ### 2. 各項目を入力
 
@@ -90,7 +91,7 @@ PrefabのInspectorで、以下の項目を変更できます。<br>
  挑戦者作成ウィンドウでアイコン画像ファイルを設定しなかった場合、後から手動で追加してください。<br>
 アイコン画像を用意できない場合、サンプルアイコン画像（Assets/GameAssets/Textures/PlayerSampleImage_***.png）を使用しても構いません。
 
- <img src="https://github.com/user-attachments/assets/67d947d5-eee3-46d1-884f-29e7d867f1f8"><br>
+![image](../ReadMeImages/HowToCreate/005.png)
 
 ---
 
@@ -98,7 +99,7 @@ PrefabのInspectorで、以下の項目を変更できます。<br>
 
 まずは、`Assets/Scenes/Game.unity`を開いてゲームを実行してみてください。<br>
 
-<img width="800" alt="image" src="https://github.com/user-attachments/assets/47b2ac84-8f6d-4536-8a0c-8a68435519ed" />
+<img width="800" alt="image" src="../ReadMeImages/HowToCreate/006.png" />
 
 一番左側の戦車が、自身の戦車です。<br>
 
@@ -113,14 +114,14 @@ PrefabのInspectorで、以下の項目を変更できます。<br>
 ゲーム実行時、`Assets/GameAssets/ParticipantList.asset`の上から4つの要素の挑戦者が戦います。<br>
 戦わせる挑戦者を変更したい場合は、リストの順番を並べ替えてみてください。<br>
 
-<img width="442" height="248" alt="image" src="https://github.com/user-attachments/assets/a7f5921e-e788-4e0d-9f53-10fc333d0237" />
+![image](../ReadMeImages/HowToCreate/007.png)
 
 &nbsp;
 
 スペースキーを押すとゲームを進行できます。<br>
 このゲームのルールは、[リファレンス](README_Reference.md)の『ゲームルール』をご確認ください。
 
-<img width="800" alt="image" src="https://github.com/user-attachments/assets/cccbd709-b847-4a72-bebb-d7e2864aa4f0" />
+<img width="800" alt="image" src="../ReadMeImages/HowToCreate/008.png" />
 
 初期状態ではコーディングしていないため戦車は自動で動きませんが、ゲームパッドによる手動操作は可能となっています。<br>
 操作は難しいですが、実際にプレイしてみて戦略を練ってみてください。<br>
@@ -171,7 +172,7 @@ namespace Player7777777
 
 作成されたPrefabを開いてみましょう。<br>
 
-<img width="287" height="202" alt="image" src="https://github.com/user-attachments/assets/d83ce1de-01c7-4352-96ca-0ed20fc365cf" />
+![image](../ReadMeImages/HowToCreate/009.png)
 
 Prefabの編集モードで、自身の戦車に砲塔や装甲を着けてカスタマイズできます。<br>
 

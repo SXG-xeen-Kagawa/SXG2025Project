@@ -2,7 +2,7 @@
 
 自身の戦車を開き、Prefabの編集モード内の「戦車Prefab編集モードパネル」で、自身の戦車に砲塔や装甲を着けてカスタマイズできます。
 
-<img width="1512" height="468" alt="image" src="https://github.com/user-attachments/assets/426fe414-2a8a-4875-b3ab-ebab541b48fe" />
+![image](../ReadMeImages/HowToCustomizeTank/000.png)
 
 砲塔や装甲の装着には「コスト」がかかり、それらの総コストが１台の戦車を出撃させるのに必要なコスト「**出撃コスト**」となります。  
 各プレイヤーは**１試合 1000コスト分 までの戦車を出撃できます。**  
@@ -22,7 +22,7 @@
 砲塔１基のコストは「50」です。  
 砲塔は0基でも、複数台つけても構いません。    
 
-<img width="1512" height="468" alt="image" src="https://github.com/user-attachments/assets/8ea633f9-a7e6-42ad-93a1-fb28ed16042f" />
+![image](../ReadMeImages/HowToCustomizeTank/001.png)
 
 &nbsp;
 
@@ -46,7 +46,7 @@
 
 Prefab内でCubeを作成し、Transform（座標・回転・スケール）を調整するだけでも、装甲の出来上がりです。  
 
-<img width="1917" height="467" alt="image" src="https://github.com/user-attachments/assets/a736600d-bad0-4183-8f7d-13e058547d75" />
+![image](../ReadMeImages/HowToCustomizeTank/002.png)
 
 &nbsp;
 
@@ -57,7 +57,7 @@ Prefab内でCubeを作成し、Transform（座標・回転・スケール）を�
 3. マテリアルのインスペクタの「Base Map」に、インポートしたテクスチャをアタッチ
 4. Prefab内のCubeオブジェクトに、作成したマテリアルをアタッチ
 
-<img width="1919" height="485" alt="image" src="https://github.com/user-attachments/assets/5f988732-a637-48d0-872e-fd744cc861a8" />
+![image](../ReadMeImages/HowToCustomizeTank/003.png)
 
 &nbsp;
 
@@ -65,9 +65,9 @@ Prefab内でCubeを作成し、Transform（座標・回転・スケール）を�
 また、上記のフォルダ内に、弊社がいくつかモデルを用意していますので、ご自由にご利用ください。  
 スケールを変更しても構いません。
 
-<img width="237" height="234" alt="image" src="https://github.com/user-attachments/assets/d5fdbae6-de24-4304-99c0-e7390f502769" />
+![image](../ReadMeImages/HowToCustomizeTank/004.png)
 
-<img width="1512" height="473" alt="image" src="https://github.com/user-attachments/assets/082d5d4c-ec12-4729-80d9-380978c4ebdd" />
+![image](../ReadMeImages/HowToCustomizeTank/005.png)
 
 ---
 
@@ -79,9 +79,9 @@ Prefab内でCubeを作成し、Transform（座標・回転・スケール）を�
 回転部位１基のコストは「2」です。  
 回転部位は0基でも、複数つけても構いません。
 
-<img width="1512" height="473" alt="image" src="https://github.com/user-attachments/assets/e9049fbb-bca2-4920-9e7d-d741c055df1e" />
+![image](../ReadMeImages/HowToCustomizeTank/006.png)
 
-<img width="310" height="153" alt="image" src="https://github.com/user-attachments/assets/55795c28-3a4d-4109-9427-03345913b5ac" />
+![image](../ReadMeImages/HowToCustomizeTank/007.png)
 
 &nbsp;
 
@@ -95,12 +95,12 @@ Prefab内でCubeを作成し、Transform（座標・回転・スケール）を�
 「戦車Prefab編集モードパネル」で「コリジョン表示」ボタンを押すと、砲弾による攻撃が当たる部分のコリジョンの表示/非表示を切り替えられます。  
 半透明の緑色で表示されます。  
 
-<img width="630" height="360" alt="image" src="https://github.com/user-attachments/assets/67102d96-19e7-4ce9-9eba-1f4936b07ff6" />
+![image](../ReadMeImages/HowToCustomizeTank/008.png)
 
 &nbsp;
 
 ボタンを押してもコリジョンが表示されない場合は、エディタ上のこのボタンが有効になっているか確認してください。
 
-<img width="290" height="92" alt="image" src="https://github.com/user-attachments/assets/19359e7b-e7dd-43c2-8187-ff9a7fd9885d" />
+![image](../ReadMeImages/HowToCustomizeTank/009.png)
 
 
