@@ -13,7 +13,7 @@
 
 ## 戦わせる戦車の変更
 
-ゲーム実行時、`Assets/GameAssets/ParticipantList.asset`のリストの、上から4つの戦車が戦います。<br>
+ゲーム実行時、`Assets/GameAssets/Data/ParticipantList.asset`のリストの、上から4つの戦車が戦います。<br>
 戦わせる戦車を変更したい場合は、リストの順番を並べ替えてください。<br>
 
 ![image](../ReadMeImages/Reference/000.png)

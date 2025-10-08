@@ -108,10 +108,10 @@ PrefabのInspectorで、以下の項目を変更できます。<br>
 どういう戦略で作成されているか簡単な解説もあるので、コーディングやカスタマイズ時の参考にしてください。<br>
 &nbsp;
 
-プロジェクト内に存在する戦車は、`Assets/GameAssets/ParticipantList.asset`でリストで管理されています。<br>
+プロジェクト内に存在する戦車は、`Assets/GameAssets/Data/ParticipantList.asset`でリストで管理されています。<br>
 新規AI作成時、自身の戦車がの0番目の要素に登録され、ゲーム内で挑戦者として選択できるようになっています。<br>
 
-ゲーム実行時、`Assets/GameAssets/ParticipantList.asset`の上から4つの要素の挑戦者が戦います。<br>
+ゲーム実行時、`Assets/GameAssets/Data/ParticipantList.asset`の上から4つの要素の挑戦者が戦います。<br>
 戦わせる挑戦者を変更したい場合は、リストの順番を並べ替えてみてください。<br>
 
 ![image](../ReadMeImages/HowToCreate/007.png)

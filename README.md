@@ -58,3 +58,11 @@ Unity初心者の方でまだプログラミングに不安がある方も、サ
 - **Step 2.　　[『リファレンス』](Documents/ReadMeFiles/README\_Reference.md) で、AI作成中に役立つ情報を確認しながら作成しましょう！**
 
 - **Step 3.　　[『AI提出手順』](Documents/ReadMeFiles/README\_HowToSubmit.md) に沿って、作成したAIを提出しましょう！**
+
+---
+
+## お問い合わせ
+
+イベントやAI作成に関するお問い合わせは、[connpassのイベントページ](https://connpass.com/event/366668/)内の『イベントへのお問い合わせ』からお願いします。
+
+  <img src="Documents/ReadMeImages/Top/001.png" />
