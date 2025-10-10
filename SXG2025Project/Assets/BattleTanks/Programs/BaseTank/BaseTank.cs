@@ -550,6 +550,18 @@ namespace SXG2025
         }
 
         private List<TankPart> m_tankPartsList = new();
+        private List<GameObject> m_errorObjList = new();    // レギュレーションエラーのオブジェクトのリスト 
+
+
+        /// <summary>
+        /// レギュレーションエラーのオブジェクトのリストを取得 
+        /// </summary>
+        /// <returns></returns>
+        internal IReadOnlyList<GameObject>  GetErrorObjectsList()
+        {
+            return m_errorObjList;
+        }
+
 
         /// <summary>
         /// 戦車のコスト計算 
@@ -562,15 +574,28 @@ namespace SXG2025
             out int countOfArmors, 
             out float tankMass)
         {
+            DataFormatTank dataTank = GetData();
+
+            Bounds regulationBounds;
+            if (comPlayerBase.transform != null)
+            {
+                regulationBounds = new Bounds(
+                    comPlayerBase.transform.TransformPoint(dataTank.m_regulationBounds.center), dataTank.m_regulationBounds.size);
+            } else
+            {
+                regulationBounds = dataTank.m_regulationBounds;
+            }
+
+
             m_tankPartsList.Clear();
-            CalculateCostRecursively(comPlayerBase.transform, m_tankPartsList);
+            m_errorObjList.Clear();
+            CalculateCostRecursively(comPlayerBase.transform, m_tankPartsList, m_errorObjList, regulationBounds);
 
             countOfTurrets = 0;
             countOfRotators = 0;
             countOfArmors = 0;
 
             // 総コストを計算 
-            DataFormatTank dataTank = GetData();
             int cost = dataTank.m_tankBasePartCost;
             foreach (var part in m_tankPartsList)
             {
@@ -614,12 +639,19 @@ namespace SXG2025
             out int countOfRotators,
             out int countOfArmors,
             out float tankMass, 
-            DataFormatTank dataTank)
+            DataFormatTank dataTank,
+            List<GameObject> errorObjList)
         {
             BaseTank baseTank = new();
             baseTank.SetData(dataTank);
-            return baseTank.CalculateTankCost(comPlayerBase, out countOfTurrets, out countOfRotators, out countOfArmors, out tankMass);
+            var retval = baseTank.CalculateTankCost(comPlayerBase, out countOfTurrets, out countOfRotators, out countOfArmors, out tankMass);
+            errorObjList.Clear();
+            errorObjList.AddRange(baseTank.GetErrorObjectsList());
+            return retval;
         }
+
+
+
 
 
         private DataFormatTank m_dataTank = null;
@@ -638,7 +670,8 @@ namespace SXG2025
 
 
 
-        private void CalculateCostRecursively(Transform tankPartTr, List<TankPart> tankPartsList)
+        private void CalculateCostRecursively(Transform tankPartTr, List<TankPart> tankPartsList, 
+            List<GameObject> errorObjList, Bounds regulationBounds)
         {
             DataFormatTank dataTank = GetData();
 
@@ -709,11 +742,22 @@ namespace SXG2025
                         part.m_durability = Mathf.Max(1.0f, part.m_objectVolume * dataTank.m_tankVolumeToDurability);
                         part.m_partType = TankPart.PartType.Armor;
                         tankPartsList.Add(part);
+
+                        // レギュレーションチェック 
+                        if (CheckTankSizeRegulation(meshRend, regulationBounds) == false)
+                        {
+                            errorObjList.Add(partTr.gameObject);
+                        }
+                    }
+                    // それ以外でコライダーのついているオブジェクトはレギュレーション違反 
+                    else if (partTr.GetComponent<Collider>() != null)
+                    {
+                        errorObjList.Add(partTr.gameObject);
                     }
                 }
 
                 // 再帰計量 
-                CalculateCostRecursively(partTr, tankPartsList);
+                CalculateCostRecursively(partTr, tankPartsList, errorObjList, regulationBounds);
             }
         }
 
@@ -729,6 +773,18 @@ namespace SXG2025
             return Mathf.Min(volumeGlobal, volumeLocal);
         }
 
+
+        /// <summary>
+        /// レギュレーションチェック 
+        /// </summary>
+        /// <param name="meshRend"></param>
+        /// <param name="partTr"></param>
+        /// <returns></returns>
+        static bool CheckTankSizeRegulation(MeshRenderer meshRend, Bounds regulationBounds)
+        {
+            Bounds boundsG = meshRend.bounds;
+            return regulationBounds.Contains(boundsG.min) && regulationBounds.Contains(boundsG.max);
+        }
 
 
 
@@ -746,6 +802,9 @@ namespace SXG2025
             //float totalMass = dataTank.m_tankBaseMass + dataTank.m_tankCostToMassCoef * (GameConstants.DEFAULT_PLAYER_ENERGY/2 - baseCost);
             return totalMass;
         }
+
+
+
 
 
         #endregion

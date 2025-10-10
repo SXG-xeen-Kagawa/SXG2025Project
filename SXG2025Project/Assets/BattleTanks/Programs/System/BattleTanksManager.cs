@@ -967,6 +967,18 @@ namespace SXG2025
                         entrySheet.m_isInvincible = false;
                     });
             }
+
+            // レギュレーション違反のパーツがあれば削除 
+            if (0 < entrySheet.m_baseTank.GetErrorObjectsList().Count)
+            {
+                foreach (var errorObj in entrySheet.m_baseTank.GetErrorObjectsList())
+                {
+                    if (errorObj != null)
+                    {
+                        Destroy(errorObj);
+                    }
+                }
+            }
         }
 
 

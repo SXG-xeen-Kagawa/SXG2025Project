@@ -1,6 +1,6 @@
 # 戦車のカスタマイズ方法
 
-自身の戦車を開き、Prefabの編集モード内の「戦車Prefab編集モードパネル」で、自身の戦車に砲塔や装甲を着けてカスタマイズできます。
+自身の戦車を開き、Prefabの編集モード内の「戦車Prefab編集モードパネル」で、自身の戦車に砲塔や装甲を付けてカスタマイズできます。
 
 ![image](../ReadMeImages/HowToCustomizeTank/000.png)
 
@@ -103,4 +103,23 @@ Prefab内でCubeを作成し、Transform（座標・回転・スケール）を�
 
 ![image](../ReadMeImages/HowToCustomizeTank/009.png)
 
+---
+
+## 【2025/10/10追加】 砲塔・装甲・回転パーツを付けられる範囲制限
+
+砲塔・装甲・回転パーツを付けられる範囲に制限をかけるようにしました。  
+戦車Prefab編集モードで表示されている白い枠が制限範囲です。  
+各パーツのオブジェクトの、MeshRendererが範囲以内におさまるように配置してください。
+
+<img width="800" alt="image" src="../ReadMeImages/HowToCustomizeTank/010.png" />
+
+パーツが制限範囲外に出てしまった場合、Prefab編集モード上にエラー文を表示します。  
+違反したオブジェクトの名前を表示します。  
+
+<img width="800" alt="image" src="../ReadMeImages/HowToCustomizeTank/011.png" />
+
+違反したオブジェクトをPrefab内に残したままゲームを再生すると、違反したオブジェクトは削除された状態で試合が始まります。  
+違反したオブジェクトを残したままでも試合に影響はありませんが、**違反したオブジェクトのコストも計算されている**ので、削除するか範囲内におさめるようにしたほうがよいでしょう。
+
+![image](../ReadMeImages/HowToCustomizeTank/012.png)
 

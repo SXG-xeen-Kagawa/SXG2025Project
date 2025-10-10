@@ -38,6 +38,8 @@ namespace SXG2025
 
         public float m_shotCooldownTime = 1.5f;     // 弾を発射した後のクールタイム 
 
+        public Bounds m_regulationBounds = new Bounds(new Vector3(0, 4, 0), new Vector3(5, 5, 5));  // 戦車の既定サイズ 
+
     }
 
 

@@ -40,6 +40,9 @@ namespace SXG2025
         static GUIStyle m_valueStyle;
         static GUIStyle m_warningValueStyle;
 
+        static List<GameObject> m_errorObjectList = new();
+
+
 
         static EditComPlayerSceneGui()
         {
@@ -168,9 +171,27 @@ namespace SXG2025
             }
             GUILayout.EndHorizontal();
 
+
             // 終了 
             GUILayout.EndArea();
             Handles.EndGUI();
+
+
+            // エラーオブジェクト 
+            if (0 < m_errorObjectList.Count)
+            {
+                GUILayout.BeginArea(new Rect(50, 150, 400, 64), GUI.skin.box);
+                GUILayout.Label("規定違反パーツ (" + m_errorObjectList.Count + "個)", m_warningValueStyle);
+                GUILayout.BeginHorizontal();
+                for (int i=0; i < m_errorObjectList.Count; ++i)
+                {
+                    var errorObj = m_errorObjectList[i];
+                    GUILayout.Label(string.Format("{0} ", (errorObj != null)? errorObj.name: "---"), m_warningValueStyle);
+                }
+                GUILayout.EndHorizontal();
+                GUILayout.EndArea();
+            }
+
 
 
             // 砲塔、回転部位にテキスト表示 
@@ -182,6 +203,13 @@ namespace SXG2025
             finally
             {
                 Handles.EndGUI();
+            }
+
+            // レギュレーションサイズを表示 
+            {
+                var dataTank = LoadEditorDataTankCache();
+                var bounds = dataTank.m_regulationBounds;
+                Handles.DrawWireCube(bounds.center, bounds.size);
             }
         }
 
@@ -431,7 +459,7 @@ namespace SXG2025
                 m_lastHash = h;
                 m_lastCost = BaseTank.SystemCalculateTankCost(comPlayer, 
                     out m_countOfTurrets, out m_countOfRotators, out m_countOfArmors, out m_tankMass,
-                    dataTank);
+                    dataTank, m_errorObjectList);
                 //m_lastCost = ComputeCost(root);
                 m_lastRecalcTime = EditorApplication.timeSinceStartup;
                 // SceneViewの再描画
@@ -475,12 +503,29 @@ namespace SXG2025
                 // 子のスケール変更 
                 foreach (var t in root.GetComponentsInChildren<Transform>(true))
                 {
+                    // スケール 
                     int sx = Mathf.RoundToInt(t.localScale.x * 1000.0f);
                     int sy = Mathf.RoundToInt(t.localScale.y * 1000.0f);
                     int sz = Mathf.RoundToInt(t.localScale.z * 1000.0f);
                     hash = hash * 397 ^ sx;
                     hash = hash * 397 ^ sy;
                     hash = hash * 397 ^ sz;
+
+                    // 座標 
+                    int px = Mathf.RoundToInt(t.localPosition.x * 1000.0f);
+                    int py = Mathf.RoundToInt(t.localPosition.y * 1000.0f);
+                    int pz = Mathf.RoundToInt(t.localPosition.z * 1000.0f);
+                    hash = hash * 397 ^ px;
+                    hash = hash * 397 ^ py;
+                    hash = hash * 397 ^ pz;
+
+                    // 回転 
+                    int rx = Mathf.RoundToInt(t.localRotation.x * 10.0f);
+                    int ry = Mathf.RoundToInt(t.localRotation.y * 10.0f);
+                    int rz = Mathf.RoundToInt(t.localRotation.z * 10.0f);
+                    hash = hash * 397 ^ rx;
+                    hash = hash * 397 ^ ry;
+                    hash = hash * 397 ^ rz;
                 }
             }
             return hash;
