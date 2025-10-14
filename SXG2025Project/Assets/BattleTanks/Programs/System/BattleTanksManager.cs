@@ -288,8 +288,10 @@ namespace SXG2025
                 entrySheet.m_initialPosition = m_popPoints[i].position;
                 entrySheet.m_initialRotation = m_popPoints[i].rotation;
 
-                // AI選択 
-                int entryId = i % m_participantList.m_comPlayers.Count;
+                // AI選択
+                int entryId = GameDataHolder.Instance.ParticipantIndexes[i];
+                if (entryId== -1)
+                    entryId = i % m_participantList.m_comPlayers.Count;
                 entrySheet.m_comPlayerPrefab = m_participantList.m_comPlayers[entryId];
 
                 // 戦車生成 (コスト計算含む)
@@ -870,7 +872,7 @@ namespace SXG2025
             yield return new WaitForSeconds(0.5f);
 
             // 再びゲーム開始 
-            SceneManager.LoadSceneAsync("Game");
+            SceneManager.LoadSceneAsync(GameDataHolder.GameExitSceneName);
         }
 
 

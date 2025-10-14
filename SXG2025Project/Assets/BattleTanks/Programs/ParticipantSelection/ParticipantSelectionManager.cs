@@ -59,6 +59,8 @@ namespace SXG2025
             var participant = m_participantList.m_comPlayers[scrollItemIndex];
             m_controller.SetCurrentNamePlateData(participant.Organization, participant.YourName, participant.FaceImage);
 
+            GameDataHolder.Instance.ParticipantIndexes[m_controller.m_currentIndex] = scrollItemIndex;
+
             // 次の挑戦者を選択
             m_controller.UpdateSelectionNamePlate(m_controller.m_currentIndex + 1);
 

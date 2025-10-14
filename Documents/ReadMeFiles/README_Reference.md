@@ -18,6 +18,9 @@
 
 ![image](../ReadMeImages/Reference/000.png)
 
+【2025/10/14追加】  
+また、挑戦者選択シーン（`Assets/Scenes/ParticipantSelection.unity`）から起動すると、戦わせる挑戦者を実行時に選択することができます。
+
 ## サンプルAI解説
 
 弊社が用意したサンプルAIの情報を記載しています。<br>

@@ -25,7 +25,7 @@ namespace SXG2025
 
             for (var i = 0; i < m_namePlates.Length; i++)
             {
-                m_namePlates[i].SetSelection(nextIndex == i);
+                m_namePlates[i].SetSelection(m_currentIndex == i);
             }
         }
 
