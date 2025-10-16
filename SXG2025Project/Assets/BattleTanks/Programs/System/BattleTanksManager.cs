@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 namespace SXG2025
 {
@@ -908,13 +909,6 @@ namespace SXG2025
             entrySheet.m_comPlayer.Setup(entrySheet.m_id, this);
             entrySheet.m_comPlayer.enabled = false;
 
-            // 不要パートを削除 
-            var destroyList = entrySheet.m_comPlayer.GetComponentsInChildren<DestroyPartInGame>();
-            foreach (var part in destroyList)
-            {
-                part.Delete();
-            }
-
             // 戦車のレイヤーを変更する 
             ChangeTankLayer(entrySheet.m_comPlayer.gameObject);
 
@@ -943,17 +937,30 @@ namespace SXG2025
                 entrySheet.m_currentCost = entrySheet.m_tankBaseSpec.m_cost;
             }
 
+            var errorObjects = entrySheet.m_baseTank.GetErrorObjectsList();
+
             // 戦車生成直後はシールドを張る 
             if (withShield)
             {
                 // 戦車の全体の大きさを計算 
                 Bounds tankBounds = new();
-                var meshes = entrySheet.m_comPlayer.GetComponentsInChildren<MeshRenderer>(false);
-                if (0 < meshes.Length)
+                var meshes = entrySheet.m_comPlayer.GetComponentsInChildren<MeshRenderer>(false).ToList();
+                if (0 < meshes.Count)
                 {
-                    tankBounds = meshes[0].bounds;
-                    for (int i = 1; i < meshes.Length; ++i)
+                    // body（もしくはfullBody）オブジェクトを基準にする
+                    var bodyMeshRenderer = meshes.Find(_ => (_.gameObject.name == "body" || _.gameObject.name == "fullBody"));
+                    if (tankBounds != null)
+                        tankBounds = bodyMeshRenderer.bounds;
+
+                    for (int i = 0; i < meshes.Count; ++i)
                     {
+                        // レギュレーション違反や削除予定対象のオブジェクトは無視
+                        if (errorObjects.Contains(meshes[i].gameObject)
+                            || errorObjects.Contains(meshes[i].GetComponentInParent<TurretPart>()?.gameObject)
+                            || errorObjects.Contains(meshes[i].GetComponentInParent<RotJointPart>()?.gameObject)
+                            || meshes[i].GetComponentInParent<DestroyPartInGame>())
+                            continue;
+
                         tankBounds.Encapsulate(meshes[i].bounds);
                     }
                 }
@@ -970,10 +977,18 @@ namespace SXG2025
                     });
             }
 
-            // レギュレーション違反のパーツがあれば削除 
-            if (0 < entrySheet.m_baseTank.GetErrorObjectsList().Count)
+            // 不要パートを削除 
+            var destroyList = entrySheet.m_comPlayer.GetComponentsInChildren<DestroyPartInGame>();
+            foreach (var part in destroyList)
             {
-                foreach (var errorObj in entrySheet.m_baseTank.GetErrorObjectsList())
+                part.Delete();
+            }
+
+
+            // レギュレーション違反のパーツがあれば削除 
+            if (0 < errorObjects.Count)
+            {
+                foreach (var errorObj in errorObjects)
                 {
                     if (errorObj != null)
                     {

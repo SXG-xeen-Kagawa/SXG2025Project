@@ -705,6 +705,16 @@ namespace SXG2025
                     part.m_durability = float.MaxValue;     // 砲塔は壊れない 
                     part.m_partType = TankPart.PartType.Turret;
                     tankPartsList.Add(part);
+
+                    // レギュレーションチェック 
+                    MeshRenderer meshRend = partTr.GetComponentInChildren<MeshRenderer>();
+                    if (meshRend != null)
+                    {
+                        if (CheckTankSizeRegulation(meshRend, regulationBounds) == false)
+                        {
+                            errorObjList.Add(partTr.gameObject);
+                        }
+                    }
                 }
                 else if (partTr.GetComponent<RotJointPart>() != null)
                 {
@@ -716,6 +726,16 @@ namespace SXG2025
                     part.m_durability = float.MaxValue;     // Jointは壊れない 
                     part.m_partType = TankPart.PartType.Joint;
                     tankPartsList.Add(part);
+
+                    // レギュレーションチェック 
+                    MeshRenderer meshRend = partTr.GetComponentInChildren<MeshRenderer>();
+                    if (meshRend != null)
+                    {
+                        if (CheckTankSizeRegulation(meshRend, regulationBounds) == false)
+                        {
+                            errorObjList.Add(partTr.gameObject);
+                        }
+                    }
                 }
                 // それ以外
                 else
@@ -766,9 +786,9 @@ namespace SXG2025
             Bounds boundsG = meshRend.bounds;
             float volumeGlobal = boundsG.size.x * boundsG.size.y * boundsG.size.z;
             Bounds boundsL = meshRend.localBounds;
-            float boundsX = boundsL.size.x * partTr.lossyScale.x;
-            float boundsY = boundsL.size.y * partTr.lossyScale.y;
-            float boundsZ = boundsL.size.z * partTr.lossyScale.z;
+            float boundsX = boundsL.size.x * Mathf.Abs(partTr.lossyScale.x);
+            float boundsY = boundsL.size.y * Mathf.Abs(partTr.lossyScale.y);
+            float boundsZ = boundsL.size.z * Mathf.Abs(partTr.lossyScale.z);
             float volumeLocal = boundsX * boundsY * boundsZ;
             return Mathf.Min(volumeGlobal, volumeLocal);
         }
