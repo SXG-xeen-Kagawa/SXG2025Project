@@ -189,6 +189,10 @@ namespace SXG2025
                 var turretData = behaviorData.m_turretData[i];
                 var turretPart = m_turrets[i];
 
+                // 非アクティブなら無視
+                if (!turretPart.isActiveAndEnabled)
+                    continue;
+
                 // 旋回 
                 switch (turretData.m_controlMode)
                 {
@@ -222,6 +226,10 @@ namespace SXG2025
             {
                 var jointData = behaviorData.m_jointData[i];
                 var jointPart = m_joints[i];
+
+                // 非アクティブなら無視
+                if (!jointPart.isActiveAndEnabled)
+                    continue;
 
                 // 旋回 
                 switch (jointData.m_controlMode)

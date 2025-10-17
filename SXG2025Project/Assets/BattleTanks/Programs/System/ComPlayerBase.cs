@@ -256,7 +256,7 @@ namespace SXG2025
 
 
         /// <summary>
-        /// ジョイント関節の回転方法を指定して砲塔を旋回させる
+        /// ジョイント関節の回転方法を指定してジョイントを旋回させる
         /// </summary>
         /// <param name="jointId">ジョイント関節番号</param>
         /// <param name="yawDir">左右の旋回：-1 ～ +1：右方向がプラス、左方向がマイナス</param>

@@ -69,6 +69,12 @@ Prefab内でCubeを作成し、Transform（座標・回転・スケール）を�
 
 ![image](../ReadMeImages/HowToCustomizeTank/005.png)
 
+**【2025/10/17追加】**  
+モデルの体積によって計算されたコストよりも大きいColliderをつけられてしまうことは想定外だったため、ゲーム中では **MeshRendererの形状に沿ったMeshColliderを動的に生成** するようにしました。  
+何かしらColliderがついているMeshRendererに対して、既存Colliderを削除してMeshRendererに差し替える処理になっているので、Prefabの装甲パーツにColliderはつけておいてください。  
+
+![image](../ReadMeImages/HowToCustomizeTank/013.png)
+
 ---
 
 ## 回転部位を追加する
@@ -122,4 +128,5 @@ Prefab内でCubeを作成し、Transform（座標・回転・スケール）を�
 違反したオブジェクトを残したままでも試合に影響はありませんが、**違反したオブジェクトのコストも計算されている**ので、削除するか範囲内におさめるようにしたほうがよいでしょう。
 
 ![image](../ReadMeImages/HowToCustomizeTank/012.png)
+
 

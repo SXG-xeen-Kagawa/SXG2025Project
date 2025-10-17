@@ -494,9 +494,17 @@ namespace SXG2025
             m_countOfLoser = 0;
 
             // COMを起こす 
+            // ただし、最大コストを超えていれば自爆
             foreach (var playerSheet in m_playerEntrySheetList)
             {
-                playerSheet.m_comPlayer.enabled = true;
+                if (GameConstants.DEFAULT_PLAYER_ENERGY < playerSheet.m_currentCost)
+                {
+                    DestroiedTankCallback(playerSheet.m_id, -1);
+                }
+                else
+                {
+                    playerSheet.m_comPlayer.enabled = true;
+                }
             }
 
             // 制限時間管理 
@@ -939,8 +947,8 @@ namespace SXG2025
 
             var errorObjects = entrySheet.m_baseTank.GetErrorObjectsList();
 
-            // 戦車生成直後はシールドを張る 
-            if (withShield)
+            // 戦車生成直後はシールドを張る（最大コストを超えていなければ）
+            if (withShield && entrySheet.m_currentCost <= GameConstants.DEFAULT_PLAYER_ENERGY)
             {
                 // 戦車の全体の大きさを計算 
                 Bounds tankBounds = new();
@@ -984,7 +992,6 @@ namespace SXG2025
                 part.Delete();
             }
 
-
             // レギュレーション違反のパーツがあれば削除 
             if (0 < errorObjects.Count)
             {
@@ -994,6 +1001,26 @@ namespace SXG2025
                     {
                         Destroy(errorObj);
                     }
+                }
+            }
+
+            // MeshRendererがColliderを持っていれば、MeshColliderに差し替えてMeshRendererの形状に合わせる
+            var renderers = entrySheet.m_comPlayer.transform.GetComponentsInChildren<MeshRenderer>();
+            foreach (var renderer in renderers)
+            {
+                // 砲塔は無視
+                if (renderer.GetComponentInParent<TurretPart>())
+                    continue;
+
+                if (renderer.TryGetComponent<Collider>(out var col))
+                {
+                    Destroy(col);
+
+                    var mc = renderer.gameObject.AddComponent<MeshCollider>();
+                    var mf = renderer.GetComponent<MeshFilter>();
+                    mc.convex = true;
+                    if (mf != null && mf.sharedMesh != null)
+                        mc.sharedMesh = mf.sharedMesh;
                 }
             }
         }
