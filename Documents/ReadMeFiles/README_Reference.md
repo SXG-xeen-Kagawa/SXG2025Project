@@ -364,14 +364,13 @@ void SXG_RotateTurretToDirection(int turretId, float yawDir, float pitchDir);
 
 <h3 id="func07">SXG_RotateTurretToAngle</h3>
 
-void SXG_RotateTurretToDirection(int turretId, float yawDir, float pitchDir);
+[System.Obsolete("この関数は使用しても何も起こりません。")]  
+void SXG_RotateTurretToAngle(int turretId, float yawAngle, float pitchAngle);
 
-- yawAngle : 左右の旋回：戦車の正面が0度：右方向がプラス、左方向がマイナス
-- pitchAngle : 上下の旋回：戦車の正面が0度：下方向がプラス、上方向がマイナス
-
-砲塔番号を指定して、ローカル角度（ヨー、ピッチ）を指定して砲塔を旋回させます。  
-範囲外の番号を指定するとアサーションが発生します。  
-砲塔の回転速度には上限があるため、大きな値を指定すると即座に反映はされません。
+【2025/10/21追記】  
+Angle操作モードの実装漏れがあり、使用しても何も起こらないため、この関数はObsoleteにしています。  
+使用すると、実行時に「SXG_RotateTurretToAngle関数は使用しないでください。」というエラーログが出力されます。  
+（ゲーム内動作には影響はありません）
 
 ---
 

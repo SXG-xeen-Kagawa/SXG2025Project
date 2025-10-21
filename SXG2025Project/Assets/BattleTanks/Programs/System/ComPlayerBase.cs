@@ -230,14 +230,17 @@ namespace SXG2025
         /// <param name="turretId">砲塔番号</param>
         /// <param name="yawPower">左右の旋回：戦車の正面が0度：右方向がプラス、左方向がマイナス</param>
         /// <param name="pitchPower">上下の旋回：戦車の正面が0度：下方向がプラス、上方向がマイナス</param>
+        [System.Obsolete("この関数は使用しても何も起こりません。")]
         protected void SXG_RotateTurretToAngle(int turretId, float yawAngle, float pitchAngle)
         {
-            Assert.IsNotNull(m_comBehaviorData.m_turretData);
-            Assert.IsTrue(0 <= turretId && turretId < m_comBehaviorData.m_turretData.Length);
+            Debug.LogError("SXG_RotateTurretToAngle関数は使用しないでください。");
 
-            m_comBehaviorData.m_turretData[turretId].m_controlMode = TurretControlMode.TargetAngle;
-            m_comBehaviorData.m_turretData[turretId].m_targetYawAngle = yawAngle;
-            m_comBehaviorData.m_turretData[turretId].m_targetPitchAngle = pitchAngle;
+            //Assert.IsNotNull(m_comBehaviorData.m_turretData);
+            //Assert.IsTrue(0 <= turretId && turretId < m_comBehaviorData.m_turretData.Length);
+
+            //m_comBehaviorData.m_turretData[turretId].m_controlMode = TurretControlMode.TargetAngle;
+            //m_comBehaviorData.m_turretData[turretId].m_targetYawAngle = yawAngle;
+            //m_comBehaviorData.m_turretData[turretId].m_targetPitchAngle = pitchAngle;
         }
 
         /// <summary>
