@@ -1213,6 +1213,7 @@ MonoBehaviour:
   - {r: 0.9882353, g: 0.29411766, b: 0.60784316, a: 1}
   - {r: 0.17254902, g: 0.5372549, b: 0.98039216, a: 1}
   m_mainCamera: {fileID: 961739752}
+  m_turretPrefab: {fileID: 257087510055725153, guid: 3189e5f6b4035c04b83b03f8d84f7ce3, type: 3}
 --- !u!1 &1236814234
 GameObject:
   m_ObjectHideFlags: 0

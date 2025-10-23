@@ -31,6 +31,8 @@ namespace SXG2025
 
         [SerializeField] private Camera m_mainCamera = null;
 
+        [SerializeField] private GameObject m_turretPrefab = null; // 砲塔作り直し用
+
 #if RESULT_TEST
         const float GAME_PLAYING_TIME = 5.0f;
 #else
@@ -270,6 +272,9 @@ namespace SXG2025
 
             // 初期化 
             m_isUpdateComs = false;
+
+            // 物理処理をリセット 
+            Physics.simulationMode = SimulationMode.FixedUpdate;
 
             // ゲーム用オブジェクトの配置ルートを作成 
             GameObject worldObj = new GameObject("GameWorld");
@@ -525,8 +530,12 @@ namespace SXG2025
                 if (playerSheet.m_baseTank != null)
                 {
                     playerSheet.m_baseTank.ResetControl();
+                    playerSheet.m_comPlayer.enabled = false;    // スクリプトも止めておく
                 }
             }
+
+            // 物理処理を停止（Physics.Simulateを呼ばない限り物理計算は実行されなくなる）
+            Physics.simulationMode = SimulationMode.Script;
 
             // It's Decided! 表示 
             m_gameSetUI.Enter();
@@ -880,6 +889,9 @@ namespace SXG2025
             FadeCanvas.Instance.FadeOut();
             yield return new WaitForSeconds(0.5f);
 
+            // 物理処理をリセット 
+            Physics.simulationMode = SimulationMode.FixedUpdate;
+
             // 再びゲーム開始 
             SceneManager.LoadSceneAsync(GameDataHolder.GameExitSceneName);
         }
@@ -952,13 +964,15 @@ namespace SXG2025
             {
                 // 戦車の全体の大きさを計算 
                 Bounds tankBounds = new();
-                var meshes = entrySheet.m_comPlayer.GetComponentsInChildren<MeshRenderer>(false).ToList();
+                var meshes = entrySheet.m_baseTank.GetComponentsInChildren<MeshRenderer>(false).ToList();
                 if (0 < meshes.Count)
                 {
                     // body（もしくはfullBody）オブジェクトを基準にする
                     var bodyMeshRenderer = meshes.Find(_ => (_.gameObject.name == "body" || _.gameObject.name == "fullBody"));
                     if (tankBounds != null)
+                    {
                         tankBounds = bodyMeshRenderer.bounds;
+                    }
 
                     for (int i = 0; i < meshes.Count; ++i)
                     {
@@ -1003,6 +1017,43 @@ namespace SXG2025
                     }
                 }
             }
+
+            // 砲塔を作り直す（スケール変更対策）
+            // ※リストに入っていない砲塔は対象外
+            // ※砲塔内に装甲パーツなど入れていれば消える
+            // ※もしレギュレーション違反となる位置になっても削除されない
+            entrySheet.m_comPlayer.GetTurrets((turrets) =>
+            {
+                var posCashes = new Vector3[turrets.Length];
+                var rotCashes = new Quaternion[turrets.Length];
+                var parentCashes = new Transform[turrets.Length];
+                for (int i = 0; i < turrets.Length; i++)
+                {
+                    var turretPart = turrets[i];
+                    if (turretPart != null)
+                    {
+                        posCashes[i] = turretPart.transform.position;
+                        rotCashes[i] = turretPart.transform.rotation;
+                        parentCashes[i] = turretPart.transform.parent;
+
+                        // 親が砲塔だった場合はComPlayer直下に置く
+                        if (parentCashes[i].GetComponentInParent<TurretPart>() != null)
+                            parentCashes[i] = entrySheet.m_comPlayer.transform;
+
+                        Destroy(turretPart.gameObject);
+
+                        turrets[i] = Instantiate(m_turretPrefab, posCashes[i], rotCashes[i], parentCashes[i])
+                            .GetComponent<TurretPart>();
+                    }
+                }
+            });
+            // 戦車の有効な砲塔にカラーを設定する 
+            entrySheet.m_comPlayer.SetTeamColor(entrySheet.m_baseTank.GetTeamColorMaterial());
+            // 戦車の砲塔を駆動部に紐づける 
+            entrySheet.m_comPlayer.GetTurrets((turrets) =>
+            {
+                entrySheet.m_baseTank.LinkTurrets(turrets);
+            });
 
             // MeshRendererがColliderを持っていれば、MeshColliderに差し替えてMeshRendererの形状に合わせる
             var renderers = entrySheet.m_comPlayer.transform.GetComponentsInChildren<MeshRenderer>();
@@ -1075,6 +1126,12 @@ namespace SXG2025
         /// <param name="teamNo"></param>
         private void DestroiedTankCallback(int teamNo, int attackTeamNo)
         {
+            // ゲームが継続しているか判定 
+            if (m_isUpdateComs == false)
+            {
+                return;
+            }
+
             // 破棄 
             var entrySheet = m_playerEntrySheetList[teamNo];
             if (entrySheet.m_baseTank != null)

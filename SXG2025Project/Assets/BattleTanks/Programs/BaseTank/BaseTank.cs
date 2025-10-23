@@ -1,7 +1,7 @@
 ﻿using SXG2025.Effect;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using System.Linq;
 
 
 
@@ -189,8 +189,8 @@ namespace SXG2025
                 var turretData = behaviorData.m_turretData[i];
                 var turretPart = m_turrets[i];
 
-                // 非アクティブなら無視
-                if (!turretPart.isActiveAndEnabled)
+                // null or 非アクティブなら無視
+                if (turretPart == null || !turretPart.isActiveAndEnabled)
                     continue;
 
                 // 旋回 
@@ -412,6 +412,9 @@ namespace SXG2025
                     int cost = 0;
                     foreach (var part in m_tankPartsList)
                     {
+                        if (!part.m_partTr)
+                            continue;
+
                         if (part.m_partTr.GetComponentInParent<BaseTank>() == this)
                         {
                             cost += part.m_cost;
@@ -723,6 +726,14 @@ namespace SXG2025
                             errorObjList.Add(partTr.gameObject);
                         }
                     }
+                    // リストに登録されていない砲塔はエラーオブジェクト扱い
+                    if (m_turrets != null)
+                    {
+                        if (!m_turrets.Contains(partTr.GetComponent<TurretPart>()))
+                        {
+                            errorObjList.Add(partTr.gameObject);
+                        }
+                    }
                 }
                 else if (partTr.GetComponent<RotJointPart>() != null)
                 {
@@ -740,6 +751,14 @@ namespace SXG2025
                     if (meshRend != null)
                     {
                         if (CheckTankSizeRegulation(meshRend, regulationBounds) == false)
+                        {
+                            errorObjList.Add(partTr.gameObject);
+                        }
+                    }
+                    // リストに登録されていない回転ジョイントはエラーオブジェクト扱い
+                    if (m_joints != null)
+                    {
+                        if (!m_joints.Contains(partTr.GetComponent<RotJointPart>()))
                         {
                             errorObjList.Add(partTr.gameObject);
                         }

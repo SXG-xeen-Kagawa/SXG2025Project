@@ -86,7 +86,7 @@ namespace SXG2025
             // 砲塔にカラーマテリアルを設定 
             foreach (var turret in m_turrets)
             {
-                var meshes = turret.GetComponentsInChildren<MeshRenderer>();
+                var meshes = turret?.GetComponentsInChildren<MeshRenderer>();
                 foreach (var mesh in meshes)
                 {
                     mesh.material = colorMaterial;
